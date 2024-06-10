@@ -1,0 +1,93 @@
+{
+  "messages" : [ {
+    "message-id" : 0,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "SERVER",
+      "send-time" : 1717762211872,
+      "id" : -1,
+      "content" : "Chat initialized."
+    }
+  }, {
+    "message-id" : 1,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "test1",
+      "send-time" : 1717762211877,
+      "id" : -1,
+      "content" : "test"
+    }
+  }, {
+    "message-id" : 2,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1717763090586,
+      "id" : 0,
+      "content" : "test"
+    }
+  }, {
+    "message-id" : 3,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1717763091496,
+      "id" : 1,
+      "content" : "test"
+    }
+  }, {
+    "message-id" : 4,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1717763091859,
+      "id" : 2,
+      "content" : "test"
+    }
+  }, {
+    "message-id" : 5,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1717763091999,
+      "id" : 3,
+      "content" : "test"
+    }
+  }, {
+    "message-id" : 6,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1717763092146,
+      "id" : 4,
+      "content" : "test"
+    }
+  }, {
+    "message-id" : 7,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1717763093389,
+      "id" : 5,
+      "content" : "test"
+    }
+  }, {
+    "message-id" : 8,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1717763093652,
+      "id" : 6,
+      "content" : "test"
+    }
+  }, {
+    "message-id" : 9,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1717763093808,
+      "id" : 7,
+      "content" : "test"
+    }
+  } ]
+}

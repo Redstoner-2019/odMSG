@@ -1,0 +1,14 @@
+{
+  "segment-data" : {
+    "1" : {
+      "min" : 0,
+      "max" : 9
+    }
+  },
+  "messages" : 10,
+  "last-msg" : 1717763093809,
+  "title" : "Test Chat",
+  "uuid" : "da1da35d-f926-43a2-b090-e0bbd5e1a883",
+  "segments" : 1,
+  "participants" : [ "lukas" ]
+}
