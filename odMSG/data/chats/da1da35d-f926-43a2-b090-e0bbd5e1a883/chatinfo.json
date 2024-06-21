@@ -3,12 +3,16 @@
     "1" : {
       "min" : 0,
       "max" : 9
+    },
+    "2" : {
+      "min" : 10,
+      "max" : 17
     }
   },
-  "messages" : 10,
-  "last-msg" : 1717763093809,
+  "messages" : 18,
+  "last-msg" : 1718869645218,
   "title" : "Test Chat",
   "uuid" : "da1da35d-f926-43a2-b090-e0bbd5e1a883",
-  "segments" : 1,
+  "segments" : 2,
   "participants" : [ "lukas" ]
 }

@@ -4,10 +4,7 @@ import me.redstoner2019.client.AuthenticatorClient;
 import me.redstoner2019.events.ClientConnectEvent;
 import me.redstoner2019.events.ConnectionLostEvent;
 import me.redstoner2019.events.ObjectRecieveEvent;
-import me.redstoner2019.odmsg.misc.Chat;
-import me.redstoner2019.odmsg.misc.Message;
-import me.redstoner2019.odmsg.misc.User;
-import me.redstoner2019.odmsg.misc.Util;
+import me.redstoner2019.odmsg.misc.*;
 import me.redstoner2019.server.ODClientHandler;
 import me.redstoner2019.server.ODServer;
 import org.json.JSONArray;
@@ -81,6 +78,7 @@ public class ServerConnector extends ODServer {
                 odClientHandler.addObjectRecieveEvent(new ObjectRecieveEvent() {
                     @Override
                     public void onEvent(Object o) {
+                        System.out.println(o.getClass());
                         if(o instanceof String){
                             JSONObject packet = new JSONObject((String) o);
                             System.out.println(packet.toString());
@@ -196,6 +194,25 @@ public class ServerConnector extends ODServer {
                                         object.put("last-msg",chat.getLatestMessageTime());
                                         object.put("members",new JSONArray(chat.getParticipants()));
                                         odClientHandler.sendObject(object.toString());
+                                        break;
+                                    }
+                                    case "file-upload" : {
+                                        JSONObject dataObject = packet.getJSONObject("data");
+                                        System.out.println("Upload recieved");
+                                        System.out.println(dataObject.toString());
+                                        String savePath;
+                                        switch (dataObject.getString(dataObject.getString("type"))) {
+                                            case "profile-picture" : {
+                                                savePath = "odMSG/data/users/" + user.getUsername() + "/profile_picture.png";
+                                                break;
+                                            }
+                                            default: {
+                                                savePath = "error.txt";
+                                                break;
+                                            }
+                                        }
+                                        FileTransfer.downloadFile(savePath,odClientHandler.getSocket());
+                                        break;
                                     }
                                 }
                             }

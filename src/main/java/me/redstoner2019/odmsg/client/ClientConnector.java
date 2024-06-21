@@ -14,4 +14,7 @@ public class ClientConnector extends ODClient {
     private static String ip = "localhost";
     private static int port = 8005;
 
+    public ClientConnector() {
+
+    }
 }
