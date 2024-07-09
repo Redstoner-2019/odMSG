@@ -1,0 +1,75 @@
+{
+  "messages" : [ {
+    "message-id" : 10,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1717998101657,
+      "id" : 8,
+      "content" : "Hallo"
+    }
+  }, {
+    "message-id" : 11,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1717999378815,
+      "id" : 9,
+      "content" : "Hallo"
+    }
+  }, {
+    "message-id" : 12,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1717999393402,
+      "id" : 10,
+      "content" : "NE\n"
+    }
+  }, {
+    "message-id" : 13,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1718775902874,
+      "id" : 11,
+      "content" : "Hewwo UwU"
+    }
+  }, {
+    "message-id" : 14,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1718776604207,
+      "id" : 12,
+      "content" : "Hallo"
+    }
+  }, {
+    "message-id" : 15,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1718869522042,
+      "id" : 13,
+      "content" : "testie"
+    }
+  }, {
+    "message-id" : 16,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1718869622691,
+      "id" : 14,
+      "content" : "test"
+    }
+  }, {
+    "message-id" : 17,
+    "message" : {
+      "encryption" : "NONE",
+      "sender" : "lukas",
+      "send-time" : 1718869645218,
+      "id" : 15,
+      "content" : "test\n\ntest"
+    }
+  } ]
+}

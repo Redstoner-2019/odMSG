@@ -5,10 +5,7 @@ import me.redstoner2019.events.ConnectionFailedEvent;
 import me.redstoner2019.events.ConnectionLostEvent;
 import me.redstoner2019.events.ConnectionSuccessEvent;
 import me.redstoner2019.events.ObjectRecieveEvent;
-import me.redstoner2019.odmsg.misc.AlternatingListCellRenderer;
-import me.redstoner2019.odmsg.misc.Logger;
-import me.redstoner2019.odmsg.misc.Message;
-import me.redstoner2019.odmsg.misc.VerticalCellRenderer;
+import me.redstoner2019.odmsg.misc.*;
 import me.redstoner2019.util.Token;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,17 +19,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
 public class GUI extends JFrame {
+    private  GUI gui = this;
     private Container loginGUI = new Container();
     private Container mainGUI = new Container();
     private Container chatGUI = new Container();
     private Container callGUI = new Container();
     private Container manageGUI = new Container();
+    private Container manageProfileGUI = new Container();
     private Container friendGUI = new Container();
 
     private ClientConnector connector = new ClientConnector();
@@ -64,6 +64,7 @@ public class GUI extends JFrame {
         initChatGUI();
         initCallGUI();
         initManageGUI();
+        initManageProfileGUI();
         initFriendGUI();
 
         switchContentPane(loginGUI);
@@ -266,6 +267,7 @@ public class GUI extends JFrame {
         JScrollPane directMessagesScrollPane = new JScrollPane(directMessages);
         JScrollPane chatsScrollPane = new JScrollPane(chats);
         JScrollPane friendsScrollPane = new JScrollPane(friends);
+        JButton manageProfile = new JButton("Manage Profile");
 
         lblTitle.setFont(new Font("Arial",Font.PLAIN,25));
         directMessagesScrollPane.setFont(new Font("Arial",Font.PLAIN,25));
@@ -277,6 +279,14 @@ public class GUI extends JFrame {
         directMessagesScrollPane.setBounds(50,50,200,400);
         chatsScrollPane.setBounds(300,50,200,400);
         friendsScrollPane.setBounds(550,50,200,400);
+        manageProfile.setBounds(20,500,200,30);
+
+        manageProfile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switchContentPane(manageProfileGUI);
+            }
+        });
 
         directMessages.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -319,6 +329,7 @@ public class GUI extends JFrame {
         mainGUI.add(directMessagesScrollPane);
         mainGUI.add(chatsScrollPane);
         mainGUI.add(friendsScrollPane);
+        mainGUI.add(manageProfile);
 
         logger.log("init done");
     }
@@ -381,12 +392,13 @@ public class GUI extends JFrame {
         sendMessage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Message message = new Message(messageArea.getText(),username);
+                Message message = new Message(messageArea.getText().strip(),username);
                 JSONObject object = new JSONObject();
                 object.put("header","send-message");
                 object.put("data",message.toJson());
                 object.put("chat",currentChatUUID);
                 connector.sendObject(object.toString());
+                messageArea.setText("");
             }
         });
     }
@@ -396,7 +408,49 @@ public class GUI extends JFrame {
     }
 
     private void initManageGUI(){
+        JButton backButton = new JButton("<- Back");
 
+        backButton.setBounds(30,30,80,30);
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switchContentPane(chatGUI);
+            }
+        });
+
+        manageGUI.add(backButton);
+    }
+
+    private void initManageProfileGUI(){
+        JButton backButton = new JButton("<- Back");
+        JButton changeProfilePicture = new JButton("Upload new Profile Picture");
+
+        backButton.setBounds(30,30,80,30);
+
+        changeProfilePicture.setBounds(30,80,200,30);
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentChatUUID = null;
+                switchContentPane(mainGUI);
+            }
+        });
+
+        changeProfilePicture.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser chooser = new JFileChooser();
+                chooser.showOpenDialog(gui);
+
+                File file = chooser.getSelectedFile();
+                FileTransfer.uploadFile(file,connector.getSocket(),"profile-picture");
+            }
+        });
+
+        manageProfileGUI.add(backButton);
+        manageProfileGUI.add(changeProfilePicture);
     }
 
     private void initFriendGUI(){
@@ -454,7 +508,7 @@ public class GUI extends JFrame {
     private void updateData(){
         JSONObject packet = new JSONObject();
         packet.put("header","data-request");
-        connector.sendObject(packet.toString());
+        //connector.sendObject(packet.toString());
     }
     private void startChatUpdater(){
         Thread t = new Thread(new Runnable() {
